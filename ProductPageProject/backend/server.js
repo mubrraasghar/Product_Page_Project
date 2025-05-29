@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import path from "path";
 import cors from "cors";
 import { fileURLToPath } from 'url';
+import { existsSync } from 'fs';
 
 import { connectDB } from "./config/db.js";
 import productRoutes from "./routes/product.route.js";
@@ -30,10 +31,21 @@ app.get("/api", (req, res) => {
 
 // Serve static files from the frontend/dist directory
 const frontendPath = path.join(__dirname, "..", "frontend", "dist");
+console.log("Frontend path:", frontendPath);
+
+// Check if the frontend build exists
+if (!existsSync(frontendPath)) {
+	console.error("Frontend build directory not found at:", frontendPath);
+} else {
+	console.log("Frontend build directory found");
+}
+
+// Serve static files
 app.use(express.static(frontendPath));
 
 // Handle all other routes by serving the index.html
-app.get("*", (req, res) => {
+app.get('/*', (req, res) => {
+	console.log("Serving index.html for path:", req.path);
 	res.sendFile(path.join(frontendPath, "index.html"));
 });
 
