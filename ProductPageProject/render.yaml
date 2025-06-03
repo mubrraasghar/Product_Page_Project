@@ -3,12 +3,12 @@ services:
     name: product-page-project
     env: node
     buildCommand: |
-      pwd
-      ls -la
       npm install
       cd frontend && npm install && npm run build
       cd ../backend && npm install
     startCommand: cd backend && node server.js
     envVars:
       - key: NODE_VERSION
-        value: 18.17.0 
+        value: 18.17.0
+      - key: PORT
+        value: 10000 
