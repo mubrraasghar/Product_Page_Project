@@ -2,6 +2,7 @@ services:
   - type: web
     name: product-page-project
     env: node
+    rootDir: .
     buildCommand: |
       npm install
       cd frontend && npm install && npm run build
