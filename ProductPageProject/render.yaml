@@ -2,8 +2,12 @@ services:
   - type: web
     name: product-page-project
     env: node
-    buildCommand: npm run build
-    startCommand: npm start
+    rootDir: .
+    buildCommand: |
+      npm install
+      cd frontend && npm install && npm run build
+      cd ../backend && npm install
+    startCommand: cd backend && npm start
     envVars:
       - key: NODE_ENV
         value: production
