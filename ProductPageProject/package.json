@@ -13,7 +13,7 @@
     "postinstall": "npm run install-all"
   },
   "engines": {
-    "node": "18.17.0"
+    "node": "20.11.1"
   },
   "keywords": [],
   "author": "",

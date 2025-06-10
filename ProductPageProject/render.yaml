@@ -2,7 +2,9 @@ services:
   - type: web
     name: product-page-project
     env: node
+    nodeVersion: 20.11.1
     buildCommand: |
+      npm install
       cd frontend && npm install && npm run build
       cd ../backend && npm install
     startCommand: cd backend && node server.js
@@ -12,4 +14,8 @@ services:
       - key: PORT
         value: 10000
       - key: MONGODB_URI
-        sync: false 
+        sync: false
+      - key: VITE_API_URL
+        value: https://product-page-project.onrender.com/api
+    healthCheckPath: /api
+    autoDeploy: true 
