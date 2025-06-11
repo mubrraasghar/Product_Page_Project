@@ -5,9 +5,9 @@ services:
     nodeVersion: 20.11.1
     buildCommand: |
       npm install
-      cd frontend && npm install && npm run build
-      cd ../backend && npm install
-    startCommand: cd backend && node server.js
+      npm run install-all
+      npm run build
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
